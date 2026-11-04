@@ -1,0 +1,63 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# C extensions
+*.obj
+*.o
+
+# Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+
+# Data and Artifacts (NEVER commit datasets, models, or indexes)
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+data/features/*
+!data/features/.gitkeep
+data/logs/*
+!data/logs/.gitkeep
+artifacts/*
+!artifacts/.gitkeep
+triton/model_repository/**/model.savedmodel/*
+!triton/model_repository/**/.gitkeep
+
+
+# Environment and Secrets
+.env
+.env.local
+*.secret
+*.pem
+*.key
+
+# Testing and Quality
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Jupyter Notebooks checkpoints
+.ipynb_checkpoints/
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Database dumps
+dump.rdb
+*.rdb
+
+

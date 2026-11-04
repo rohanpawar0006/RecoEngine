@@ -1,0 +1,36 @@
+{
+  "warm_cache_hit": {
+    "n_requests": 100,
+    "mean_ms": 6.003,
+    "p50_ms": 5.62,
+    "p95_ms": 9.302,
+    "p99_ms": 10.066
+  },
+  "warm_cache_miss_full_pipeline": {
+    "n_requests": 100,
+    "mean_ms": 18.809,
+    "p50_ms": 17.649,
+    "p95_ms": 20.927,
+    "p99_ms": 43.872
+  },
+  "cold_popularity_fallback": {
+    "n_requests": 100,
+    "mean_ms": 6.498,
+    "p50_ms": 6.03,
+    "p95_ms": 9.494,
+    "p99_ms": 10.632
+  },
+  "cold_content_fallback": {
+    "n_requests": 100,
+    "mean_ms": 163.205,
+    "p50_ms": 159.236,
+    "p95_ms": 196.685,
+    "p99_ms": 224.381
+  },
+  "metadata": {
+    "served_by": "local",
+    "redis_available": true,
+    "faiss_loaded": true,
+    "catalog_size": 34461
+  }
+}

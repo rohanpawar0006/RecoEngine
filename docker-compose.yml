@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:7.2-alpine
+    container_name: reco_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  # Triton and Airflow services are marked as TBD for local Docker verification (Phase 0 / Memory.md).
+  # Uncomment and configure once Docker/WSL2 host daemon is confirmed running.
+  #
+  # triton:
+  #   image: nvcr.io/nvidia/tritonserver:24.05-py3
+  #   container_name: reco_triton
+  #   ports:
+  #     - "8000:8000"
+  #     - "8001:8001"
+  #     - "8002:8002"
+  #   volumes:
+  #     - ./triton/model_repository:/models
+  #   command: ["tritonserver", "--model-repository=/models"]
+  #   restart: unless-stopped
+  #
+  # airflow-webserver:
+  #   image: apache/airflow:2.9.2-python3.11
+  #   container_name: reco_airflow_webserver
+  #   restart: always
+  #   ports:
+  #     - "8080:8080"
+  #   volumes:
+  #     - ./airflow/dags:/opt/airflow/dags
+
+volumes:
+  redis_data:
+

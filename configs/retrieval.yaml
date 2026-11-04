@@ -1,0 +1,9 @@
+embedding_dim: 64
+learning_rate: 0.001
+batch_size: 4096
+epochs: 5
+seed: 42
+top_k_candidates: 200
+
+model_output_dir: "artifacts"
+

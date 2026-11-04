@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "evaluation_users_count": 2000,
+  "stage_1_retrieval_only": {
+    "recall@10": 0.009658973191051445,
+    "ndcg@10": 0.025612671208259278
+  },
+  "stage_2_retrieval_plus_ranker": {
+    "recall@10": 0.012573369027298744,
+    "ndcg@10": 0.03534424611533686
+  },
+  "beats_retrieval_hurdle": true,
+  "ndcg@10_margin": 0.009731574907077583,
+  "relative_improvement_pct": 37.995158052626145
+}

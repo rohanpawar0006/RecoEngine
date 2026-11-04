@@ -1,0 +1,55 @@
+{
+  "version": "v1",
+  "index_type": "IndexFlatIP (Exact Inner Product)",
+  "num_items": 34461,
+  "embedding_dim": 64,
+  "index_file": "artifacts/v1/faiss.index",
+  "index_file_size_bytes": 8822061,
+  "single_query_latency_ms": {
+    "p50": 0.9775,
+    "p95": 1.5992,
+    "p99": 2.2911,
+    "mean": 1.1156,
+    "min": 0.7845,
+    "max": 6.1572
+  },
+  "batch_benchmarks": {
+    "1": {
+      "batch_size": 1,
+      "latency_ms": 0.683,
+      "latency_per_query_ms": 0.6835,
+      "queries_per_second": 1463.2
+    },
+    "8": {
+      "batch_size": 8,
+      "latency_ms": 1.149,
+      "latency_per_query_ms": 0.1437,
+      "queries_per_second": 6961.3
+    },
+    "32": {
+      "batch_size": 32,
+      "latency_ms": 6.996,
+      "latency_per_query_ms": 0.2186,
+      "queries_per_second": 4573.9
+    },
+    "64": {
+      "batch_size": 64,
+      "latency_ms": 18.937,
+      "latency_per_query_ms": 0.2959,
+      "queries_per_second": 3379.7
+    },
+    "128": {
+      "batch_size": 128,
+      "latency_ms": 28.172,
+      "latency_per_query_ms": 0.2201,
+      "queries_per_second": 4543.5
+    },
+    "256": {
+      "batch_size": 256,
+      "latency_ms": 62.062,
+      "latency_per_query_ms": 0.2424,
+      "queries_per_second": 4124.9
+    }
+  },
+  "brute_force_equivalence": true
+}

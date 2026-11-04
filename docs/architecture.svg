@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 700" width="100%" height="100%" style="background-color: #0F1216; font-family: 'Inter', system-ui, sans-serif;">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4C8DFF" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#1F5FD1" stop-opacity="0.05"/>
+    </linearGradient>
+    <linearGradient id="secondaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B7CFF" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#5B4BD6" stop-opacity="0.05"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2DD4BF" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#0F9E8D" stop-opacity="0.05"/>
+    </linearGradient>
+    
+    <!-- Marker for Arrows -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#4C8DFF"/>
+    </marker>
+    <marker id="arrow-accent" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#2DD4BF"/>
+    </marker>
+    <marker id="arrow-sec" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#8B7CFF"/>
+    </marker>
+  </defs>
+
+  <!-- Title Header -->
+  <text x="40" y="45" fill="#E8EBEF" font-size="22" font-weight="700">RecoEngine — End-to-End System Architecture</text>
+  <text x="40" y="70" fill="#9AA4B0" font-size="13">Two-Stage Recommender: TFRS Two-Tower + FAISS FlatIP (Stage 1) &amp; DCN-V2 Ranker (Stage 2) with Redis Cache</text>
+
+  <!-- Section 1: Offline Training & Airflow DAG Container -->
+  <rect x="40" y="95" width="1020" height="235" rx="14" fill="#171C22" stroke="#2A313A" stroke-width="1.5"/>
+  <rect x="40" y="95" width="220" height="28" rx="6" fill="#222933"/>
+  <text x="52" y="114" fill="#8B7CFF" font-size="11" font-weight="700" letter-spacing="1">OFFLINE PIPELINE &amp; RETRAINING DAG</text>
+
+  <!-- Box: Raw Data & Temporal Split -->
+  <rect x="65" y="145" width="165" height="75" rx="10" fill="url(#secondaryGrad)" stroke="#8B7CFF" stroke-width="1.5"/>
+  <text x="80" y="172" fill="#E8EBEF" font-size="13" font-weight="600">MovieLens 25M</text>
+  <text x="80" y="192" fill="#9AA4B0" font-size="11">Strict Temporal Split</text>
+  <text x="80" y="207" fill="#8B7CFF" font-size="10" font-family="monospace">80% Train | 10% Val | 10% Test</text>
+
+  <!-- Box: PySpark Feature Store -->
+  <rect x="270" y="145" width="175" height="75" rx="10" fill="#1B222C" stroke="#2A313A" stroke-width="1.5"/>
+  <text x="285" y="172" fill="#E8EBEF" font-size="13" font-weight="600">PySpark Features</text>
+  <text x="285" y="192" fill="#9AA4B0" font-size="11">User &amp; Item Features</text>
+  <text x="285" y="207" fill="#2DD4BF" font-size="10" font-family="monospace">Parquet Feature Store</text>
+
+  <!-- Box: Stage 1 Retrieval Training -->
+  <rect x="485" y="135" width="180" height="95" rx="10" fill="url(#primaryGrad)" stroke="#4C8DFF" stroke-width="1.5"/>
+  <text x="500" y="160" fill="#E8EBEF" font-size="13" font-weight="600">Stage 1: Two-Tower</text>
+  <text x="500" y="178" fill="#9AA4B0" font-size="11">TFRS User &amp; Item (64-d)</text>
+  <text x="500" y="195" fill="#9AA4B0" font-size="11">In-Batch Negatives</text>
+  <text x="500" y="213" fill="#4C8DFF" font-size="10" font-family="monospace">Val Recall@200: 0.256</text>
+
+  <!-- Box: FAISS Index Building -->
+  <rect x="705" y="135" width="155" height="95" rx="10" fill="#1B222C" stroke="#2A313A" stroke-width="1.5"/>
+  <text x="720" y="160" fill="#E8EBEF" font-size="13" font-weight="600">FAISS Index</text>
+  <text x="720" y="178" fill="#9AA4B0" font-size="11">IndexFlatIP (Exact)</text>
+  <text x="720" y="195" fill="#9AA4B0" font-size="11">34,461 Embeddings</text>
+  <text x="720" y="213" fill="#2DD4BF" font-size="10" font-family="monospace">p50 Latency: 0.98 ms</text>
+
+  <!-- Box: Stage 2 Ranker Training & Promotion Gate -->
+  <rect x="895" y="135" width="150" height="95" rx="10" fill="url(#primaryGrad)" stroke="#4C8DFF" stroke-width="1.5"/>
+  <text x="908" y="160" fill="#E8EBEF" font-size="13" font-weight="600">Stage 2: DCN-V2</text>
+  <text x="908" y="178" fill="#9AA4B0" font-size="11">Cross Layers + MLP</text>
+  <text x="908" y="195" fill="#9AA4B0" font-size="11">Hard Negative Mining</text>
+  <text x="908" y="213" fill="#3DDC84" font-size="10" font-family="monospace">NDCG@10 Lift: +32%</text>
+
+  <!-- Offline DAG Flow Arrows -->
+  <line x1="230" y1="182" x2="265" y2="182" stroke="#4C8DFF" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="445" y1="182" x2="480" y2="182" stroke="#4C8DFF" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="665" y1="182" x2="700" y2="182" stroke="#4C8DFF" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="860" y1="182" x2="890" y2="182" stroke="#4C8DFF" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Airflow Promotion Gate Banner -->
+  <rect x="65" y="255" width="980" height="55" rx="8" fill="#11161D" stroke="#364150" stroke-width="1"/>
+  <text x="80" y="278" fill="#FFB84D" font-size="12" font-weight="700">AIRFLOW AUTOMATED RETRAINING DAG &amp; NON-INFERIORITY PROMOTION GATE</text>
+  <text x="80" y="297" fill="#9AA4B0" font-size="11">Tasks: build_features &gt;&gt; train_retrieval &gt;&gt; build_index &gt;&gt; train_ranker &gt;&gt; evaluate_candidate &gt;&gt; promotion_gate &gt;&gt; export_artifacts &gt;&gt; flush_cache</text>
+
+
+  <!-- Section 2: Online Serving Layer Container -->
+  <rect x="40" y="355" width="1020" height="305" rx="14" fill="#171C22" stroke="#2A313A" stroke-width="1.5"/>
+  <rect x="40" y="355" width="190" height="28" rx="6" fill="#222933"/>
+  <text x="52" y="374" fill="#4C8DFF" font-size="11" font-weight="700" letter-spacing="1">ONLINE SERVING LAYER</text>
+
+  <!-- Client & FastAPI Entry -->
+  <rect x="65" y="420" width="170" height="100" rx="10" fill="#1B222C" stroke="#4C8DFF" stroke-width="1.5"/>
+  <text x="80" y="445" fill="#E8EBEF" font-size="13" font-weight="700">FastAPI Service</text>
+  <text x="80" y="465" fill="#4C8DFF" font-size="11" font-family="monospace">POST /recommend</text>
+  <text x="80" y="485" fill="#9AA4B0" font-size="11">Salted Hash A/B Router</text>
+  <text x="80" y="503" fill="#8B7CFF" font-size="10" font-family="monospace">Variant A: 50% | B: 50%</text>
+
+  <!-- Redis Cache -->
+  <rect x="285" y="405" width="190" height="75" rx="10" fill="url(#accentGrad)" stroke="#2DD4BF" stroke-width="1.5"/>
+  <text x="300" y="430" fill="#E8EBEF" font-size="13" font-weight="600">Redis Cache Layer</text>
+  <text x="300" y="448" fill="#9AA4B0" font-size="11">rec:{variant}:{user_id}:{k}</text>
+  <text x="300" y="465" fill="#2DD4BF" font-size="10" font-family="monospace">p50 Hit: 5.62 ms (TTL: 1h)</text>
+
+  <!-- Cold Fallback Engine -->
+  <rect x="285" y="525" width="190" height="85" rx="10" fill="#1B222C" stroke="#FFB84D" stroke-width="1.5"/>
+  <text x="300" y="550" fill="#E8EBEF" font-size="13" font-weight="600">Cold-Start Fallbacks</text>
+  <text x="300" y="568" fill="#9AA4B0" font-size="11">Time-Decayed Pop (71% lift)</text>
+  <text x="300" y="586" fill="#9AA4B0" font-size="11">Genre Content Matching</text>
+  <text x="300" y="602" fill="#FFB84D" font-size="10" font-family="monospace">p50 Latency: 6.03 ms</text>
+
+  <!-- Stage 1 Online FAISS Search -->
+  <rect x="525" y="420" width="180" height="100" rx="10" fill="#1B222C" stroke="#2A313A" stroke-width="1.5"/>
+  <text x="540" y="445" fill="#E8EBEF" font-size="13" font-weight="600">Stage 1: FAISS MIPS</text>
+  <text x="540" y="465" fill="#9AA4B0" font-size="11">User Tower Embedding</text>
+  <text x="540" y="485" fill="#9AA4B0" font-size="11">Seen-Item Filtering</text>
+  <text x="540" y="503" fill="#4C8DFF" font-size="10" font-family="monospace">Top-200 Candidates</text>
+
+  <!-- Stage 2 Triton / Local Inference -->
+  <rect x="750" y="420" width="180" height="100" rx="10" fill="url(#primaryGrad)" stroke="#4C8DFF" stroke-width="1.5"/>
+  <text x="765" y="445" fill="#E8EBEF" font-size="13" font-weight="600">Stage 2: DCN-V2</text>
+  <text x="765" y="465" fill="#9AA4B0" font-size="11">Triton / Local SavedModel</text>
+  <text x="765" y="485" fill="#9AA4B0" font-size="11">CTR Probability Scoring</text>
+  <text x="765" y="503" fill="#3DDC84" font-size="10" font-family="monospace">Rank Top-K Candidates</text>
+
+  <!-- Client Response Payload -->
+  <rect x="965" y="420" width="80" height="100" rx="10" fill="#1B222C" stroke="#2DD4BF" stroke-width="1.5"/>
+  <text x="975" y="455" fill="#E8EBEF" font-size="12" font-weight="700">Top-K</text>
+  <text x="975" y="475" fill="#2DD4BF" font-size="11">JSON</text>
+  <text x="975" y="495" fill="#9AA4B0" font-size="10">Sub-20ms</text>
+
+  <!-- Online Flow Connections -->
+  <line x1="235" y1="450" x2="280" y2="445" stroke="#2DD4BF" stroke-width="1.5" marker-end="url(#arrow-accent)"/>
+  <line x1="235" y1="480" x2="280" y2="550" stroke="#FFB84D" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arrow)"/>
+  <line x1="475" y1="445" x2="520" y2="455" stroke="#4C8DFF" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="705" y1="465" x2="745" y2="465" stroke="#4C8DFF" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="930" y1="465" x2="960" y2="465" stroke="#2DD4BF" stroke-width="1.5" marker-end="url(#arrow-accent)"/>
+
+</svg>
+

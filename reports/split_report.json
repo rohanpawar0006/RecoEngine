@@ -1,0 +1,44 @@
+{
+  "train": {
+    "num_interactions": 20000076,
+    "num_positive_interactions": 9981093,
+    "num_users": 137883,
+    "num_items": 34461,
+    "min_timestamp": 789652009,
+    "max_timestamp": 1466837397,
+    "start_date": "1995-01-09 11:46:49",
+    "end_date": "2016-06-25 06:49:57"
+  },
+  "val": {
+    "num_interactions": 2500009,
+    "num_positive_interactions": 1231511,
+    "num_users": 18003,
+    "num_items": 37221,
+    "cold_users": 12708,
+    "cold_user_pct": 0.7058823529411765,
+    "cold_items": 10649,
+    "cold_item_pct": 0.2861019317052202,
+    "min_timestamp": 1466837400,
+    "max_timestamp": 1515033890,
+    "start_date": "2016-06-25 06:50:00",
+    "end_date": "2018-01-04 02:44:50"
+  },
+  "test": {
+    "num_interactions": 2500010,
+    "num_positive_interactions": 1240207,
+    "num_users": 18442,
+    "num_items": 49405,
+    "cold_users": 14343,
+    "cold_user_pct": 0.7777356035137187,
+    "cold_items": 21485,
+    "cold_item_pct": 0.43487501265054146,
+    "min_timestamp": 1515033908,
+    "max_timestamp": 1574327703,
+    "start_date": "2018-01-04 02:45:08",
+    "end_date": "2019-11-21 09:15:03"
+  },
+  "split_integrity": {
+    "max_train_ts_le_min_val_ts": true,
+    "max_val_ts_le_min_test_ts": true
+  }
+}

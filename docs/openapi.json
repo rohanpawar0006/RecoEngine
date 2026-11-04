@@ -1,0 +1,481 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "RecoEngine API",
+    "description": "Production Two-Stage Recommendation Engine on MovieLens 25M (TFRS Two-Tower + FAISS + DCN-V2)",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Health Check",
+        "description": "Return health status of API, Redis, Triton/local ranker, and FAISS index.",
+        "operationId": "health_check_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/recommend": {
+      "post": {
+        "summary": "Recommend",
+        "description": "Generate personalized recommendations for a user:\n1. Check Redis cache.\n2. If warm user: Two-tower user embedding -> FAISS top-200 -> DCN-V2 ranking -> top-K.\n3. If cold user: Time-decayed popularity or Content-based seed matching.\n4. Store result in Redis cache.",
+        "operationId": "recommend_recommend_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecommendationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecommendationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/events": {
+      "post": {
+        "summary": "Log Event",
+        "description": "Log user feedback (impression, click, rating) to append-only JSONL log.",
+        "operationId": "log_event_events_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EventRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ab/summary": {
+      "get": {
+        "summary": "Get Ab Summary",
+        "description": "Aggregate impressions, clicks, ratings, and simulated CTR per variant from events log.",
+        "operationId": "get_ab_summary_ab_summary_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ABSummaryResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ABSummaryResponse": {
+        "properties": {
+          "total_events": {
+            "type": "integer",
+            "title": "Total Events"
+          },
+          "variants": {
+            "additionalProperties": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "object",
+            "title": "Variants"
+          }
+        },
+        "type": "object",
+        "required": [
+          "total_events",
+          "variants"
+        ],
+        "title": "ABSummaryResponse"
+      },
+      "EventRequest": {
+        "properties": {
+          "user_id": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "User Id"
+          },
+          "item_id": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Item Id"
+          },
+          "variant": {
+            "type": "string",
+            "maxLength": 32,
+            "title": "Variant",
+            "default": "v1"
+          },
+          "event": {
+            "type": "string",
+            "enum": [
+              "impression",
+              "click",
+              "rating"
+            ],
+            "title": "Event",
+            "description": "Event type"
+          },
+          "ts": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ts",
+            "description": "Unix timestamp of event"
+          },
+          "model_version": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 32
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Model Version",
+            "default": "v1"
+          },
+          "rating_value": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 5.0,
+                "minimum": 0.5
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rating Value",
+            "description": "Optional rating if event is 'rating'"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id",
+          "item_id",
+          "event"
+        ],
+        "title": "EventRequest"
+      },
+      "EventResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "logged": {
+            "type": "boolean",
+            "title": "Logged"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "logged"
+        ],
+        "title": "EventResponse"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "HealthResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "version": {
+            "type": "string",
+            "title": "Version"
+          },
+          "redis_available": {
+            "type": "boolean",
+            "title": "Redis Available"
+          },
+          "triton_available": {
+            "type": "boolean",
+            "title": "Triton Available"
+          },
+          "served_by": {
+            "type": "string",
+            "title": "Served By"
+          },
+          "faiss_loaded": {
+            "type": "boolean",
+            "title": "Faiss Loaded"
+          },
+          "catalog_size": {
+            "type": "integer",
+            "title": "Catalog Size"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "version",
+          "redis_available",
+          "triton_available",
+          "served_by",
+          "faiss_loaded",
+          "catalog_size"
+        ],
+        "title": "HealthResponse"
+      },
+      "RecommendationItem": {
+        "properties": {
+          "item_id": {
+            "type": "integer",
+            "title": "Item Id",
+            "description": "MovieLens unique movie identifier"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title",
+            "description": "Movie title"
+          },
+          "genres": {
+            "type": "string",
+            "title": "Genres",
+            "description": "Pipe-delimited genre string"
+          },
+          "score": {
+            "type": "number",
+            "title": "Score",
+            "description": "Model ranking score or similarity score"
+          },
+          "rank": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Rank",
+            "description": "1-based rank position in recommendation list"
+          }
+        },
+        "type": "object",
+        "required": [
+          "item_id",
+          "title",
+          "genres",
+          "score",
+          "rank"
+        ],
+        "title": "RecommendationItem"
+      },
+      "RecommendationRequest": {
+        "properties": {
+          "user_id": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "User Id",
+            "description": "Unique user identifier (non-negative integer)"
+          },
+          "k": {
+            "type": "integer",
+            "maximum": 100.0,
+            "minimum": 1.0,
+            "title": "K",
+            "description": "Number of recommendations to return (1-100)",
+            "default": 10
+          },
+          "variant": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 32
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Variant",
+            "description": "Model variant or experiment arm",
+            "default": "v1"
+          },
+          "seed_genres": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array",
+                "maxItems": 10
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Seed Genres",
+            "description": "Optional seed genres for cold-start onboarding"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id"
+        ],
+        "title": "RecommendationRequest"
+      },
+      "RecommendationResponse": {
+        "properties": {
+          "user_id": {
+            "type": "integer",
+            "title": "User Id"
+          },
+          "variant": {
+            "type": "string",
+            "title": "Variant"
+          },
+          "model_version": {
+            "type": "string",
+            "title": "Model Version"
+          },
+          "source": {
+            "type": "string",
+            "title": "Source",
+            "description": "Recommendation source: 'cache', 'model', 'fallback_popularity', 'fallback_content'"
+          },
+          "cache_hit": {
+            "type": "boolean",
+            "title": "Cache Hit"
+          },
+          "latency_ms": {
+            "type": "number",
+            "title": "Latency Ms"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/RecommendationItem"
+            },
+            "type": "array",
+            "title": "Items"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id",
+          "variant",
+          "model_version",
+          "source",
+          "cache_hit",
+          "latency_ms",
+          "items"
+        ],
+        "title": "RecommendationResponse"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

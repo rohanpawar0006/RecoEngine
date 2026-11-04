@@ -1,0 +1,12 @@
+model_type: "dcn_v2" # or "wide_and_deep"
+learning_rate: 0.0005
+batch_size: 2048
+epochs: 5
+early_stopping_patience: 2
+seed: 42
+
+hard_negatives_ratio: 4 # number of negative samples per positive sample
+top_k_final: 10
+
+model_output_dir: "artifacts"
+

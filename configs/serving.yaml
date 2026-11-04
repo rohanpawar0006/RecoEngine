@@ -1,0 +1,19 @@
+host: "0.0.0.0"
+port: 8100
+model_version: "v1"
+
+redis:
+  url: "redis://localhost:6379/0"
+  ttl_rec_seconds: 3600
+  ttl_pop_seconds: 86400
+  ttl_user_feat_seconds: 21600
+
+triton:
+  url: "localhost:8001" # gRPC or 8000 for HTTP
+  enabled: false # Set true once Triton container is running
+  model_name: "ranker"
+
+default_k: 10
+max_k: 100
+fallback_source: "popularity"
+

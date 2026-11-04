@@ -1,0 +1,490 @@
+[
+  {
+    "timestamp": "2026-11-04T13:59:21Z",
+    "duration_seconds": 0.0,
+    "use_dev": true,
+    "simulate_rejection": false,
+    "production_metrics": {
+      "version": "v1",
+      "ndcg@10": 0.03534,
+      "recall@10": 0.01257
+    },
+    "candidate_metrics": {
+      "version": "candidate",
+      "ndcg@10": 0.03684,
+      "recall@10": 0.0131
+    },
+    "gate_decision": {
+      "promoted": true,
+      "metric_key": "ndcg@10",
+      "candidate_score": 0.03684,
+      "production_score": 0.03534,
+      "delta": 0.0015,
+      "tolerance": 0.001,
+      "reason": "Candidate model promoted: ndcg@10 (0.03684) >= threshold (0.03434) [production: 0.03534, delta: +0.00150]."
+    },
+    "action_taken": {
+      "status": "promoted",
+      "promoted_version": "v2_test",
+      "cache_keys_invalidated": 3,
+      "artifact_path": "D:\\RecoEngine\\artifacts\\v2_test"
+    }
+  },
+  {
+    "timestamp": "2026-11-04T13:59:21Z",
+    "duration_seconds": 0.0,
+    "use_dev": true,
+    "simulate_rejection": true,
+    "production_metrics": {
+      "version": "v1",
+      "ndcg@10": 0.03534,
+      "recall@10": 0.01257
+    },
+    "candidate_metrics": {
+      "version": "candidate",
+      "ndcg@10": 0.02334,
+      "recall@10": 0.0085
+    },
+    "gate_decision": {
+      "promoted": false,
+      "metric_key": "ndcg@10",
+      "candidate_score": 0.02334,
+      "production_score": 0.03534,
+      "delta": -0.012,
+      "tolerance": 0.001,
+      "reason": "Candidate model REJECTED: ndcg@10 (0.02334) < threshold (0.03434) [production: 0.03534, delta: -0.01200]."
+    },
+    "action_taken": {
+      "status": "rejected",
+      "active_version": "v1",
+      "reason": "Candidate model REJECTED: ndcg@10 (0.02334) < threshold (0.03434) [production: 0.03534, delta: -0.01200]."
+    }
+  },
+  {
+    "timestamp": "2026-11-04T13:59:47Z",
+    "duration_seconds": 0.0,
+    "use_dev": true,
+    "simulate_rejection": false,
+    "production_metrics": {
+      "version": "v1",
+      "ndcg@10": 0.03534,
+      "recall@10": 0.01257
+    },
+    "candidate_metrics": {
+      "version": "candidate",
+      "ndcg@10": 0.03684,
+      "recall@10": 0.0131
+    },
+    "gate_decision": {
+      "promoted": true,
+      "metric_key": "ndcg@10",
+      "candidate_score": 0.03684,
+      "production_score": 0.03534,
+      "delta": 0.0015,
+      "tolerance": 0.001,
+      "reason": "Candidate model promoted: ndcg@10 (0.03684) >= threshold (0.03434) [production: 0.03534, delta: +0.00150]."
+    },
+    "action_taken": {
+      "status": "promoted",
+      "promoted_version": "v2_test",
+      "cache_keys_invalidated": 0,
+      "artifact_path": "D:\\RecoEngine\\artifacts\\v2_test"
+    }
+  },
+  {
+    "timestamp": "2026-11-04T13:59:47Z",
+    "duration_seconds": 0.0,
+    "use_dev": true,
+    "simulate_rejection": true,
+    "production_metrics": {
+      "version": "v1",
+      "ndcg@10": 0.03534,
+      "recall@10": 0.01257
+    },
+    "candidate_metrics": {
+      "version": "candidate",
+      "ndcg@10": 0.02334,
+      "recall@10": 0.0085
+    },
+    "gate_decision": {
+      "promoted": false,
+      "metric_key": "ndcg@10",
+      "candidate_score": 0.02334,
+      "production_score": 0.03534,
+      "delta": -0.012,
+      "tolerance": 0.001,
+      "reason": "Candidate model REJECTED: ndcg@10 (0.02334) < threshold (0.03434) [production: 0.03534, delta: -0.01200]."
+    },
+    "action_taken": {
+      "status": "rejected",
+      "active_version": "v1",
+      "reason": "Candidate model REJECTED: ndcg@10 (0.02334) < threshold (0.03434) [production: 0.03534, delta: -0.01200]."
+    }
+  },
+  {
+    "timestamp": "2026-11-04T13:59:57Z",
+    "duration_seconds": 0.01,
+    "use_dev": true,
+    "simulate_rejection": false,
+    "production_metrics": {
+      "version": "v1",
+      "ndcg@10": 0.03534,
+      "recall@10": 0.01257
+    },
+    "candidate_metrics": {
+      "version": "candidate",
+      "ndcg@10": 0.03684,
+      "recall@10": 0.0131
+    },
+    "gate_decision": {
+      "promoted": true,
+      "metric_key": "ndcg@10",
+      "candidate_score": 0.03684,
+      "production_score": 0.03534,
+      "delta": 0.0015,
+      "tolerance": 0.001,
+      "reason": "Candidate model promoted: ndcg@10 (0.03684) >= threshold (0.03434) [production: 0.03534, delta: +0.00150]."
+    },
+    "action_taken": {
+      "status": "promoted",
+      "promoted_version": "v2",
+      "cache_keys_invalidated": 0,
+      "artifact_path": "D:\\RecoEngine\\artifacts\\v2"
+    }
+  },
+  {
+    "timestamp": "2026-11-04T14:00:06Z",
+    "duration_seconds": 0.0,
+    "use_dev": true,
+    "simulate_rejection": true,
+    "production_metrics": {
+      "version": "v1",
+      "ndcg@10": 0.03534,
+      "recall@10": 0.01257
+    },
+    "candidate_metrics": {
+      "version": "candidate",
+      "ndcg@10": 0.02334,
+      "recall@10": 0.0085
+    },
+    "gate_decision": {
+      "promoted": false,
+      "metric_key": "ndcg@10",
+      "candidate_score": 0.02334,
+      "production_score": 0.03534,
+      "delta": -0.012,
+      "tolerance": 0.001,
+      "reason": "Candidate model REJECTED: ndcg@10 (0.02334) < threshold (0.03434) [production: 0.03534, delta: -0.01200]."
+    },
+    "action_taken": {
+      "status": "rejected",
+      "active_version": "v1",
+      "reason": "Candidate model REJECTED: ndcg@10 (0.02334) < threshold (0.03434) [production: 0.03534, delta: -0.01200]."
+    }
+  },
+  {
+    "timestamp": "2026-11-04T14:00:43Z",
+    "duration_seconds": 0.0,
+    "use_dev": true,
+    "simulate_rejection": false,
+    "production_metrics": {
+      "version": "v1",
+      "ndcg@10": 0.03534,
+      "recall@10": 0.01257
+    },
+    "candidate_metrics": {
+      "version": "candidate",
+      "ndcg@10": 0.03684,
+      "recall@10": 0.0131
+    },
+    "gate_decision": {
+      "promoted": true,
+      "metric_key": "ndcg@10",
+      "candidate_score": 0.03684,
+      "production_score": 0.03534,
+      "delta": 0.0015,
+      "tolerance": 0.001,
+      "reason": "Candidate model promoted: ndcg@10 (0.03684) >= threshold (0.03434) [production: 0.03534, delta: +0.00150]."
+    },
+    "action_taken": {
+      "status": "promoted",
+      "promoted_version": "v2_test",
+      "cache_keys_invalidated": 0,
+      "artifact_path": "D:\\RecoEngine\\artifacts\\v2_test"
+    }
+  },
+  {
+    "timestamp": "2026-11-04T14:00:44Z",
+    "duration_seconds": 0.0,
+    "use_dev": true,
+    "simulate_rejection": true,
+    "production_metrics": {
+      "version": "v1",
+      "ndcg@10": 0.03534,
+      "recall@10": 0.01257
+    },
+    "candidate_metrics": {
+      "version": "candidate",
+      "ndcg@10": 0.02334,
+      "recall@10": 0.0085
+    },
+    "gate_decision": {
+      "promoted": false,
+      "metric_key": "ndcg@10",
+      "candidate_score": 0.02334,
+      "production_score": 0.03534,
+      "delta": -0.012,
+      "tolerance": 0.001,
+      "reason": "Candidate model REJECTED: ndcg@10 (0.02334) < threshold (0.03434) [production: 0.03534, delta: -0.01200]."
+    },
+    "action_taken": {
+      "status": "rejected",
+      "active_version": "v1",
+      "reason": "Candidate model REJECTED: ndcg@10 (0.02334) < threshold (0.03434) [production: 0.03534, delta: -0.01200]."
+    }
+  },
+  {
+    "timestamp": "2026-11-04T14:01:13Z",
+    "duration_seconds": 0.0,
+    "use_dev": true,
+    "simulate_rejection": false,
+    "production_metrics": {
+      "version": "v1",
+      "ndcg@10": 0.03534,
+      "recall@10": 0.01257
+    },
+    "candidate_metrics": {
+      "version": "candidate",
+      "ndcg@10": 0.03684,
+      "recall@10": 0.0131
+    },
+    "gate_decision": {
+      "promoted": true,
+      "metric_key": "ndcg@10",
+      "candidate_score": 0.03684,
+      "production_score": 0.03534,
+      "delta": 0.0015,
+      "tolerance": 0.001,
+      "reason": "Candidate model promoted: ndcg@10 (0.03684) >= threshold (0.03434) [production: 0.03534, delta: +0.00150]."
+    },
+    "action_taken": {
+      "status": "promoted",
+      "promoted_version": "v2_test",
+      "cache_keys_invalidated": 0,
+      "artifact_path": "D:\\RecoEngine\\artifacts\\v2_test"
+    }
+  },
+  {
+    "timestamp": "2026-11-04T14:01:13Z",
+    "duration_seconds": 0.0,
+    "use_dev": true,
+    "simulate_rejection": true,
+    "production_metrics": {
+      "version": "v1",
+      "ndcg@10": 0.03534,
+      "recall@10": 0.01257
+    },
+    "candidate_metrics": {
+      "version": "candidate",
+      "ndcg@10": 0.02334,
+      "recall@10": 0.0085
+    },
+    "gate_decision": {
+      "promoted": false,
+      "metric_key": "ndcg@10",
+      "candidate_score": 0.02334,
+      "production_score": 0.03534,
+      "delta": -0.012,
+      "tolerance": 0.001,
+      "reason": "Candidate model REJECTED: ndcg@10 (0.02334) < threshold (0.03434) [production: 0.03534, delta: -0.01200]."
+    },
+    "action_taken": {
+      "status": "rejected",
+      "active_version": "v1",
+      "reason": "Candidate model REJECTED: ndcg@10 (0.02334) < threshold (0.03434) [production: 0.03534, delta: -0.01200]."
+    }
+  },
+  {
+    "timestamp": "2026-11-04T15:28:46Z",
+    "duration_seconds": 0.0,
+    "use_dev": true,
+    "simulate_rejection": false,
+    "production_metrics": {
+      "version": "v1",
+      "ndcg@10": 0.03534,
+      "recall@10": 0.01257
+    },
+    "candidate_metrics": {
+      "version": "candidate",
+      "ndcg@10": 0.03684,
+      "recall@10": 0.0131
+    },
+    "gate_decision": {
+      "promoted": true,
+      "metric_key": "ndcg@10",
+      "candidate_score": 0.03684,
+      "production_score": 0.03534,
+      "delta": 0.0015,
+      "tolerance": 0.001,
+      "reason": "Candidate model promoted: ndcg@10 (0.03684) >= threshold (0.03434) [production: 0.03534, delta: +0.00150]."
+    },
+    "action_taken": {
+      "status": "promoted",
+      "promoted_version": "v2_test",
+      "cache_keys_invalidated": 2,
+      "artifact_path": "D:\\RecoEngine\\artifacts\\v2_test"
+    }
+  },
+  {
+    "timestamp": "2026-11-04T15:28:47Z",
+    "duration_seconds": 0.0,
+    "use_dev": true,
+    "simulate_rejection": true,
+    "production_metrics": {
+      "version": "v1",
+      "ndcg@10": 0.03534,
+      "recall@10": 0.01257
+    },
+    "candidate_metrics": {
+      "version": "candidate",
+      "ndcg@10": 0.02334,
+      "recall@10": 0.0085
+    },
+    "gate_decision": {
+      "promoted": false,
+      "metric_key": "ndcg@10",
+      "candidate_score": 0.02334,
+      "production_score": 0.03534,
+      "delta": -0.012,
+      "tolerance": 0.001,
+      "reason": "Candidate model REJECTED: ndcg@10 (0.02334) < threshold (0.03434) [production: 0.03534, delta: -0.01200]."
+    },
+    "action_taken": {
+      "status": "rejected",
+      "active_version": "v1",
+      "reason": "Candidate model REJECTED: ndcg@10 (0.02334) < threshold (0.03434) [production: 0.03534, delta: -0.01200]."
+    }
+  },
+  {
+    "timestamp": "2026-11-04T15:29:23Z",
+    "duration_seconds": 0.0,
+    "use_dev": true,
+    "simulate_rejection": false,
+    "production_metrics": {
+      "version": "v1",
+      "ndcg@10": 0.03534,
+      "recall@10": 0.01257
+    },
+    "candidate_metrics": {
+      "version": "candidate",
+      "ndcg@10": 0.03684,
+      "recall@10": 0.0131
+    },
+    "gate_decision": {
+      "promoted": true,
+      "metric_key": "ndcg@10",
+      "candidate_score": 0.03684,
+      "production_score": 0.03534,
+      "delta": 0.0015,
+      "tolerance": 0.001,
+      "reason": "Candidate model promoted: ndcg@10 (0.03684) >= threshold (0.03434) [production: 0.03534, delta: +0.00150]."
+    },
+    "action_taken": {
+      "status": "promoted",
+      "promoted_version": "v2_test",
+      "cache_keys_invalidated": 0,
+      "artifact_path": "D:\\RecoEngine\\artifacts\\v2_test"
+    }
+  },
+  {
+    "timestamp": "2026-11-04T15:29:23Z",
+    "duration_seconds": 0.0,
+    "use_dev": true,
+    "simulate_rejection": true,
+    "production_metrics": {
+      "version": "v1",
+      "ndcg@10": 0.03534,
+      "recall@10": 0.01257
+    },
+    "candidate_metrics": {
+      "version": "candidate",
+      "ndcg@10": 0.02334,
+      "recall@10": 0.0085
+    },
+    "gate_decision": {
+      "promoted": false,
+      "metric_key": "ndcg@10",
+      "candidate_score": 0.02334,
+      "production_score": 0.03534,
+      "delta": -0.012,
+      "tolerance": 0.001,
+      "reason": "Candidate model REJECTED: ndcg@10 (0.02334) < threshold (0.03434) [production: 0.03534, delta: -0.01200]."
+    },
+    "action_taken": {
+      "status": "rejected",
+      "active_version": "v1",
+      "reason": "Candidate model REJECTED: ndcg@10 (0.02334) < threshold (0.03434) [production: 0.03534, delta: -0.01200]."
+    }
+  },
+  {
+    "timestamp": "2026-11-04T15:58:30Z",
+    "duration_seconds": 0.0,
+    "use_dev": true,
+    "simulate_rejection": false,
+    "production_metrics": {
+      "version": "v1",
+      "ndcg@10": 0.03534,
+      "recall@10": 0.01257
+    },
+    "candidate_metrics": {
+      "version": "candidate",
+      "ndcg@10": 0.03684,
+      "recall@10": 0.0131
+    },
+    "gate_decision": {
+      "promoted": true,
+      "metric_key": "ndcg@10",
+      "candidate_score": 0.03684,
+      "production_score": 0.03534,
+      "delta": 0.0015,
+      "tolerance": 0.001,
+      "reason": "Candidate model promoted: ndcg@10 (0.03684) >= threshold (0.03434) [production: 0.03534, delta: +0.00150]."
+    },
+    "action_taken": {
+      "status": "promoted",
+      "promoted_version": "v2_test",
+      "cache_keys_invalidated": 2,
+      "artifact_path": "D:\\RecoEngine\\artifacts\\v2_test"
+    }
+  },
+  {
+    "timestamp": "2026-11-04T15:58:30Z",
+    "duration_seconds": 0.0,
+    "use_dev": true,
+    "simulate_rejection": true,
+    "production_metrics": {
+      "version": "v1",
+      "ndcg@10": 0.03534,
+      "recall@10": 0.01257
+    },
+    "candidate_metrics": {
+      "version": "candidate",
+      "ndcg@10": 0.02334,
+      "recall@10": 0.0085
+    },
+    "gate_decision": {
+      "promoted": false,
+      "metric_key": "ndcg@10",
+      "candidate_score": 0.02334,
+      "production_score": 0.03534,
+      "delta": -0.012,
+      "tolerance": 0.001,
+      "reason": "Candidate model REJECTED: ndcg@10 (0.02334) < threshold (0.03434) [production: 0.03534, delta: -0.01200]."
+    },
+    "action_taken": {
+      "status": "rejected",
+      "active_version": "v1",
+      "reason": "Candidate model REJECTED: ndcg@10 (0.02334) < threshold (0.03434) [production: 0.03534, delta: -0.01200]."
+    }
+  }
+]

@@ -1,0 +1,41 @@
+name: "ranker"
+platform: "tensorflow_savedmodel"
+max_batch_size: 0
+
+input [
+  {
+    name: "userId"
+    data_type: TYPE_INT32
+    dims: [ -1 ]
+  },
+  {
+    name: "movieId"
+    data_type: TYPE_INT32
+    dims: [ -1 ]
+  },
+  {
+    name: "user_features"
+    data_type: TYPE_FP32
+    dims: [ -1, 2 ]
+  },
+  {
+    name: "item_features"
+    data_type: TYPE_FP32
+    dims: [ -1, 3 ]
+  }
+]
+
+output [
+  {
+    name: "output_1"
+    data_type: TYPE_FP32
+    dims: [ -1 ]
+  }
+]
+
+instance_group [
+  {
+    count: 1
+    kind: KIND_CPU
+  }
+]

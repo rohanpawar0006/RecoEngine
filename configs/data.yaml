@@ -1,0 +1,15 @@
+raw_data_dir: "data/raw"
+processed_data_dir: "data/processed"
+features_data_dir: "data/features"
+dev_subset_size: 1000000
+
+# Temporal split ratios (approximate time quantiles)
+train_ratio: 0.80
+val_ratio: 0.10
+test_ratio: 0.10
+
+# Implicit feedback definition: rating >= positive_threshold is treated as a positive interaction
+positive_threshold: 4.0
+
+seed: 42
+

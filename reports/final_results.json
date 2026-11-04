@@ -1,0 +1,151 @@
+{
+  "metadata": {
+    "evaluation_split": "test",
+    "dataset": "MovieLens 25M (temporal 80/10/10 split)",
+    "evaluated_at": "2026-11-04T15:20:10Z",
+    "total_test_users": 18276,
+    "warm_test_users_total": 3996,
+    "cold_test_users_total": 14280,
+    "warm_sample_evaluated": 2000,
+    "cold_sample_evaluated": 2000,
+    "ab_simulation_sessions": 61932
+  },
+  "warm_user_results": {
+    "random_baseline": {
+      "recall@10": 0.00010600295893199352,
+      "ndcg@10": 0.0006805147809686451,
+      "recall@50": 0.0010195322965575048,
+      "ndcg@50": 0.000986803629029035,
+      "recall@200": 0.003285899250758558,
+      "ndcg@200": 0.0017894630288819964
+    },
+    "popularity_baseline": {
+      "recall@10": 0.014134256658808794,
+      "ndcg@10": 0.029671812086373987,
+      "recall@50": 0.043966170558926654,
+      "ndcg@50": 0.035469294133953125,
+      "recall@200": 0.11373425214848953,
+      "ndcg@200": 0.058441600345909714
+    },
+    "stage1_retrieval_two_tower": {
+      "recall@10": 0.004620669902664903,
+      "ndcg@10": 0.01215065565873802,
+      "recall@50": 0.02001195273073968,
+      "ndcg@50": 0.015295023888538381,
+      "recall@200": 0.056172823987765595,
+      "ndcg@200": 0.026922454577803193
+    },
+    "stage2_dcn_v2_ranker": {
+      "recall@10": 0.006595686218240738,
+      "ndcg@10": 0.01604439116027902
+    },
+    "hurdle_comparison": {
+      "retrieval_vs_popularity_recall@200_lift_pct": -50.61,
+      "ranker_vs_retrieval_ndcg@10_lift_pct": 32.05
+    }
+  },
+  "cold_user_results": {
+    "random_baseline": {
+      "recall@10": 0.0002552443757142483,
+      "ndcg@10": 0.0019808380765424603,
+      "recall@50": 0.0012624624261170097,
+      "ndcg@50": 0.0021752650552670713,
+      "recall@200": 0.005038898561158833,
+      "ndcg@200": 0.0038203552424124136
+    },
+    "raw_popularity": {
+      "recall@10": 0.05121671769345733,
+      "ndcg@10": 0.291271365687977,
+      "recall@50": 0.14831413083799685,
+      "ndcg@50": 0.23119788347052725,
+      "recall@200": 0.3148045750637122,
+      "ndcg@200": 0.2694688903880392
+    },
+    "time_decayed_popularity": {
+      "recall@10": 0.024897234843844374,
+      "ndcg@10": 0.13975062734844135,
+      "recall@50": 0.057822536431381195,
+      "ndcg@50": 0.09995428753272902,
+      "recall@200": 0.08244892664946485,
+      "ndcg@200": 0.0857078029114758
+    },
+    "content_based_seed": {
+      "recall@10": 0.011503997125071873,
+      "ndcg@10": 0.07629937289381655,
+      "recall@50": 0.03773136470346967,
+      "ndcg@50": 0.058549736465062854,
+      "recall@200": 0.09061728531322817,
+      "ndcg@200": 0.06857386455036306
+    },
+    "hurdle_comparison": {
+      "time_decay_vs_random_ndcg@10_lift_pct": 6955.13,
+      "time_decay_vs_raw_pop_ndcg@10_lift_pct": -52.02
+    }
+  },
+  "ab_simulation_results": {
+    "simulation_method": "offline_replay_simulation",
+    "description": "Replay simulation using held-out positive test interactions as simulated clicks",
+    "sample_size": 61932,
+    "k": 10,
+    "variant_a": {
+      "name": "Variant A (Retrieval-Only)",
+      "impressions": 30801,
+      "clicks": 131,
+      "ctr": 0.00425
+    },
+    "variant_b": {
+      "name": "Variant B (Retrieval + DCN-V2 Ranker)",
+      "impressions": 31131,
+      "clicks": 156,
+      "ctr": 0.00501
+    },
+    "comparison": {
+      "absolute_diff": 0.00076,
+      "relative_lift_pct": 17.82,
+      "95_ci_abs": [
+        -0.00031,
+        0.00173
+      ],
+      "95_ci_rel_pct": [
+        -7.25,
+        40.64
+      ],
+      "z_statistic": 1.3887,
+      "p_value": 0.164932,
+      "statistically_significant": false
+    }
+  },
+  "prd_success_criteria_audit": {
+    "SC1_retrieval_beats_popularity_recall@200": {
+      "status": "FAIL",
+      "retrieval_recall@200": 0.05617,
+      "popularity_recall@200": 0.11373,
+      "lift_pct": "+-50.61%"
+    },
+    "SC2_ranker_beats_retrieval_ndcg@10": {
+      "status": "PASS",
+      "stage2_ndcg@10": 0.01604,
+      "stage1_ndcg@10": 0.01215,
+      "lift_pct": "+32.05%",
+      "bootstrap_95_ci_rel_lift": [
+        -7.25,
+        40.64
+      ],
+      "p_value": 0.164932
+    },
+    "SC3_cold_start_beats_random": {
+      "status": "PASS",
+      "time_decay_ndcg@10": 0.13975,
+      "random_ndcg@10": 0.00198,
+      "raw_popularity_ndcg@10": 0.29127
+    },
+    "SC4_end_to_end_latency_reported": {
+      "status": "PASS",
+      "source": "reports/serving_latency.json"
+    },
+    "SC5_retraining_dag_evidence": {
+      "status": "PASS",
+      "source": "reports/retraining_log.json"
+    }
+  }
+}
