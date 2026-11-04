@@ -60,4 +60,9 @@ Thumbs.db
 dump.rdb
 *.rdb
 
+# Archives
+RecoEngine_Submission.zip
+*.zip
+
+
 
