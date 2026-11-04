@@ -7,8 +7,9 @@
 ## Project Status
 
 - **Current phase:** Phase 10 — Demo, Documentation, Presentation, Reflection (Completed — ALL 10 PHASES COMPLETE)
-- **Current milestone:** All project deliverables in the brief are complete, packaged, and verified. Interactive Streamlit demo (`demo/app.py`) built per `docs/Design.md`, comprehensive `README.md` populated with real audit numbers, 10-minute presentation deck (`presentation.md`), individual reflection report (`docs/Reflection.md`), serving API reference (`docs/api.md`), architecture vector diagram (`docs/architecture.svg`), and open-source license (`LICENSE`) created.
+- **Current milestone:** All project deliverables in the brief are complete, packaged, and verified. Complete codebase pushed to GitHub repository `https://github.com/rohanpawar0006/RecoEngine` on branch `main`. Repository metadata (About description, topics, homepage) configured. Interactive Streamlit demo (`demo/app.py`), comprehensive `README.md`, 10-minute presentation deck (`presentation.md`), individual reflection report (`docs/Reflection.md`), serving API reference (`docs/api.md`), architecture vector diagram (`docs/architecture.svg`), and open-source license (`LICENSE`) created.
 - **Overall completion:** 100% implementation (Phases 0 through 10 fully complete and verified)
+- **GitHub Repository:** [https://github.com/rohanpawar0006/RecoEngine](https://github.com/rohanpawar0006/RecoEngine)
 - **Last completed task:** Completed Phase 10:
   - Built full interactive Streamlit demo (`demo/app.py`) featuring warm-user persona picker, cold-start onboarding quiz, side-by-side A/B comparison (Variant A vs Variant B with overlap stats and rank diffs), and live metric dashboards.
   - Added unit smoke test for demo in `tests/test_demo.py` (3/3 passed).
